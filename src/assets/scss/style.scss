@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-paper text-ink-500 font-sans antialiased tracking-wide;
+  /* 增加一點點字距，讓閱讀節奏變慢 */
+}
+
+/* 標題樣式：纖細、優雅 */
+h1, h2, h3, h4, h5, h6 {
+  @apply text-ink-900 font-normal; /* 不用 bold，用 regular */
+}
+
+/* --- 元件重設計 (Component Redesign) --- */
+
+/* 1. 輸入框：極簡化，去掉外框，改用底部線條 (Underline Style) */
+/* 或者保留極淡的全框，看你喜歡哪種。這裡推薦「底線式」更具書寫感 */
+.input-field {
+  @apply mt-2 block w-full border-0 border-b border-earth-200 bg-transparent px-0 py-3 text-ink-900 transition-colors focus:border-earth-500 focus:ring-0 placeholder-ink-300;
+  
+  /* 移除預設的聚焦藍框 */
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+/* 2. 按鈕：低調、內斂 */
+.btn-primary {
+  @apply inline-flex justify-center items-center rounded bg-earth-900 px-8 py-3 text-sm tracking-widest text-white transition-all duration-500 ease-out hover:bg-earth-600 hover:tracking-[0.15em];
+  /* hover 時稍微拉開字距，製造一種「呼吸」的互動感 */
+}
+
+.btn-secondary {
+  @apply inline-flex justify-center items-center rounded border border-earth-200 bg-transparent px-8 py-3 text-sm tracking-widest text-ink-500 transition-all duration-500 hover:border-earth-400 hover:text-earth-900;
+}
+
+/* 3. 卡片：去掉陰影，靠留白與微弱邊界 */
+.card {
+  @apply bg-surface p-8 sm:p-10 border border-earth-100 rounded-sm; 
+  /* rounded-sm 比 rounded-xl 更成熟、冷靜 */
+}
+
+/* 4. 連結 */
+a {
+  @apply transition-colors duration-300;
+}

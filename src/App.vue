@@ -1,26 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import Layout from "./layouts/Layout.vue";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const route = useRoute();
+
+// 判斷目前的路由需不需要 Layout
+// 預設 (Default) 是使用 MainLayout
+// 如果路由 meta.layout === 'empty'，就回傳 'div' (不使用 layout)
+const layout = computed(() => {
+  return route.meta.layout === "empty" ? "div" : Layout;
+});
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
